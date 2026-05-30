@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+        
+        .container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        
+        .input-box {
+            margin-bottom: 20px;
+        }
+
+        .task{
+            background-color: white;
+           padding: 5px;
+            margin-bottom: 3px;
+            margin-top: 5px;
+        }
+        .task a{
+            text-decoration: none;
+           
+           margin-bottom: 50px;
+        }
+        
+        .bord{
+            border: 2px solid black;
+            padding: 40px;
+
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .input-box input:focus {
+            border-color: #6c63ff;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: #5848e5;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .link a {
+            text-decoration: none;
+            color: #6c63ff;
+            font-weight: bold;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+        
+    </style>
+</head>
+<body>
+    <form action="" method="POST" class="bord">
+        {% csrf_token %}
+        <div class="input-box">
+            <h2>Enter your tasks</h2>
+            <input type="text" placeholder="" required name="todo" value="{{ s.task_name }}">
+        </div>
+
+       
+        
+
+        <button type="submit" class="btn">ADD</button>
+        {%for i in p %}
+            <div  class="todo">
+           
+            <div class="task">
+                <h3>{{ i.task_name }}</h3>
+                <a href="{% url 'delete' i.id %}">Delete</a>
+                <a href="{% url 'update' i.id %}">Update</a>
+            </div>
+        </div>
+        {% endfor %}
+    </form>
+</body>
+</html>
